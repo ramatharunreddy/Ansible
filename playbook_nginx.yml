@@ -1,0 +1,8 @@
+- name: Configuring nginx server
+  hosts: local
+  become: yes
+  tasks:
+  - name: Installing nginx package
+    ansible.builtin.pacakges:
+     name: nginx-1.24
+     state: present
