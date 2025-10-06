@@ -7,7 +7,6 @@
    domain_name: devops97.fun
    instance: 
    - nginx
-   
   tasks:
   - name: launching ec2 instances
     amazon.aws.ec2_instance:
