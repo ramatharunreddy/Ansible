@@ -25,6 +25,6 @@
   
   - name: printing ip address
     ansible.builtin.debug:
-     msg: "{{ instances[0].private_ip_address }}"
+     msg: "{{ ec2_output.instances[0].private_ip_address }}"
     #loop: "{{ ec2_output.results }}"
     
