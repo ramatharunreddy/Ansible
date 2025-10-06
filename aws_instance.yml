@@ -5,8 +5,7 @@
    SG_ID: sg-037505fdee775a221
    INSTANCE_TYPE: t3.micro
    domain_name: devops97.fun
-   instance: 
-   - nginx
+   instance: nginx
   tasks:
   - name: launching ec2 instances
     amazon.aws.ec2_instance:
