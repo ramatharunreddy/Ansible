@@ -10,13 +10,13 @@
   tasks:
   - name: launching ec2 instances
     amazon.aws.ec2_instance:
-     name: "{{ item }}"
+     name: "{{ instance  }}"
      image_id: "{{ AMI_ID }}"
      instance_type: "{{ INSTANCE_TYPE }}"
      security_group: "{{ SG_ID }}"
      tags: 
        name: Testing
-    loop: "{{ instance }}"
+   # loop: "{{ instance }}"
     register: ec2_output
 
   #- name: ec2_output
