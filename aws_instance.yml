@@ -6,7 +6,7 @@
    INSTANCE_TYPE: t3.micro
    domain_name: devops97.fun
    instance: 
-    - nginx
+   - nginx
    
   tasks:
   - name: launching ec2 instances
