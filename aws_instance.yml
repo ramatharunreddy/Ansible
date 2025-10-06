@@ -1,0 +1,26 @@
+- name: launching instances
+  hosts: local
+  vars:
+   AMI_ID: ami-09c813fb71547fc4f
+   SG_ID: sg-037505fdee775a221
+   INSTANCE_TYPE: t3.micro
+   domain_name: devops97.fun
+   instance: 
+    - nginx
+   
+  tasks:
+  - name: launching ec2 instances
+    amazon.aws.ec2_instance:
+     name: "{{ item }}"
+     image_id: "{{ AMI_ID }}"
+     instance_type: "{{ INSTANCE_TYPE }}"
+     security_group: "{{ SG_ID }}"
+     tags: 
+       Environment: Testing
+    loop: "{{ instance }}"
+    register: ec2_output
+
+  - name: ec2_output
+    ansible.builtin.debug:
+     msg: "{{ec2_output}}"
+    
