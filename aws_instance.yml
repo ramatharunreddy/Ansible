@@ -34,7 +34,7 @@
     
   - name: collect ip from loop
     ansible.builtin.set_fact:
-     all_ip: "{{ all_ip + item.instances[0].private_ip_address }}"
+     all_ip: "{{ all_ip + [item.instances[0].private_ip_address] }}"
     loop: "{{ ec2_output.results }}"
     
   - name: listing of ips
