@@ -42,3 +42,14 @@
   - name: listing of ips
     ansible.builtin.debug:
      msg: "{{ all_ip }}"
+
+  - name: adding A record in route53 zone
+    amazon.aws.route53:
+     state: present
+     zone: "{{ domain_name }}"
+     record: "{{ item.item }}.{{domain_name }}"
+     type: A
+     ttl: 10
+     value: "{{  item.instances[0].private_ip_address }}"
+     overwrite: true
+    loop: "{{ ec2_output.results }}"
