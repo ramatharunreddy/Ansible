@@ -15,7 +15,7 @@
      instance_type: "{{ INSTANCE_TYPE }}"
      security_group: "{{ SG_ID }}"
      tags: 
-       Environment: Testing
+       name: Testing
     loop: "{{ instance }}"
     register: ec2_output
 
