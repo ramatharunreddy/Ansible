@@ -5,25 +5,38 @@
    SG_ID: sg-037505fdee775a221
    INSTANCE_TYPE: t3.micro
    domain_name: devops97.fun
-   instance: nginx
+   instance: 
+   - nginx
   tasks:
   - name: launching ec2 instances
     amazon.aws.ec2_instance:
-     name: "{{ instance  }}"
+     name: "{{ item  }}"
      image_id: "{{ AMI_ID }}"
      instance_type: "{{ INSTANCE_TYPE }}"
      security_group: "{{ SG_ID }}"
      tags: 
        name: Testing
-   # loop: "{{ instance }}"
+    loop: "{{ instance }}"
     register: ec2_output
 
-  - name: ec2_output
-    ansible.builtin.debug:
-     msg: "{{ ec2_output }}"
+#  - name: ec2_output
+#    ansible.builtin.debug:
+#     msg: "{{ ec2_output }}"
   
   - name: printing ip address
     ansible.builtin.debug:
-     msg: "{{ ec2_output.instances[0].private_ip_address }}"
-    #loop: "{{ ec2_output.results }}"
+     msg: "{{ item.instances[0].private_ip_address }}"
+    loop: "{{ ec2_output.results }}"
+
+  - name: define enpty list 
+    ansible.builtin.set_fact:
+     all_ip: []
     
+  - name: collect ip from loop
+    ansible.builtin.set_fact:
+     all_ip: "{{ all_ip + item.instances[0].private_ip_address }}"
+    loop: "{{ ec2_output.results }}"
+    
+  - name: listing of ips
+    ansible.builtin.debug:
+     msg: "{{ all_ip }}"
