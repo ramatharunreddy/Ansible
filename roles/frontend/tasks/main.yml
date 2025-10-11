@@ -2,7 +2,7 @@
   ansible.builtin.package:
    name: nginx
    state: present
-  notify: restart "{{ name }}
+  notify: restart nginx
    
   
   
