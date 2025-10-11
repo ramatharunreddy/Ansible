@@ -3,3 +3,30 @@
 
 - name: "Enabling module"
   ansible.builtin.command: dnf module enbale nodejs -y
+
+- name: "Installing Nodejs servcie"
+  ansible.builtin.package:
+   name: nodejs
+   state: present
+  #enabled: yes
+
+- name: "creating system user"
+  ansible.builtin.user:
+   name: roboshop
+   comment: "roboshop system user"
+   shell: /sbin/nologin
+   home: /app
+
+- name: "creating directory"
+  ansible.builtin.file:
+   name: /app
+   state: directory
+
+- name: "Downloding application code"
+  ansible.builtin.command: curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip
+
+- name: "unarchive the file"
+  ansible.builtin.unarchive:
+   src: https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
+   dest: /app
+   remote_src: yes
