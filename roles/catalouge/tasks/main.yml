@@ -37,7 +37,7 @@
 
 - name: "seting up catalouge services"
   ansible.builtin.template:
-   src: "{{ component }}_service.j2"
+   src: "{{ component }}.service.j2"
    dest: "/etc/systemd/system/{{ component }}.service"
 
 - name: "restating Deamon"
