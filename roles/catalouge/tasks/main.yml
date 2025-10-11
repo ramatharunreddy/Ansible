@@ -1,8 +1,8 @@
-- name: "Enabling and Disabling servcie"
+- name: "Disabling servcie"
   ansible.builtin.command: dnf module disable nodejs -y
 
 - name: "Enabling module"
-  ansible.builtin.command: dnf module enbale nodejs:20 -y
+  ansible.builtin.command: dnf module enable nodejs:20 -y 
 
 - name: "Installing Nodejs servcie"
   ansible.builtin.package:
