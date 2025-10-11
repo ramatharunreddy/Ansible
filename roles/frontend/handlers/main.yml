@@ -1,6 +1,7 @@
 - name: restarting the "{{ name }}"
   ansible.builtin.service:
-   name : "{{ name }}"
-   state: restarted
+   services:
+    name : "{{ name }}"
+    state: restarted
    enabled: yes 
    listen: restart "{{ name }}"
